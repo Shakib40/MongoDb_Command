@@ -1,0 +1,61 @@
+#Insert--------
+
+
+db.Users.insert({gender: "MaleMale"})
+{ acknowledged: true,
+  insertedIds: { '0': ObjectId("619d693d82b5abaeb5133bed") } }
+
+
+#InsertMany--------
+try {
+   db.products.insertMany( [
+      { item: "card", qty: 15 },
+      { item: "envelope", qty: 20 },
+      { item: "stamps" , qty: 30 }
+   ] );
+} catch (e) {
+   print (e);
+}
+
+db.Users.insertMany( [  { item: "card", qty: 15 },   { item: "envelope", qty: 20 },   { item: "stamps" , qty: 30 } ] );
+
+
+
+
+#Find--------------
+db.Users.find({"first_name" : "Ali"})
+
+{ _id: ObjectId("619d541243191496f2e69863"),
+  first_name: 'Ali',
+  last_name: 'Gluyas',
+  email: 'agluyas0@harvard.edu',
+  gender: 'Polygender' }
+{ _id: ObjectId("619d541243191496f2e698a7"),
+  first_name: 'Ali',
+  last_name: 'Spurret',
+  email: 'aspurret1w@domainmarket.com',
+  gender: 'Genderqueer' }
+
+
+#FindOne---------
+db.Users.findOne({"first_name" : "Ali"})
+
+{ _id: ObjectId("619d541243191496f2e69863"),
+  first_name: 'Ali',
+  last_name: 'Gluyas',
+  email: 'agluyas0@harvard.edu',
+  gender: 'Polygender' }
+
+
+#Remove------------
+db.Users.remove({"first_name" : "Breena"})
+
+
+#UpdateMany
+db.Users.updateMany({"gender" : "Male"} , {$set: {gender: "MaleMale"}})
+
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 129,
+  modifiedCount: 129,
+  upsertedCount: 0 }
