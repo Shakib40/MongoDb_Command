@@ -59,3 +59,93 @@ db.Users.updateMany({"gender" : "Male"} , {$set: {gender: "MaleMale"}})
   matchedCount: 129,
   modifiedCount: 129,
   upsertedCount: 0 }
+
+
+
+#New Command-----------------
+
+
+db.users.find({email : {$eq : "agluyas0@harvard.edu"}})
+db.users.find({email : {$ne : "agluyas0@harvard.edu"}})
+
+#Greater Than--------
+db.users.find({age : {$gt : 90}}).count()
+db.users.find({age : {$gt : 90}})
+
+#Greater Than Equal---------
+db.users.find({age : {$gte : 90}}).count()
+db.users.find({age : {$gte : 90}})
+
+
+#less Than-----------
+db.users.find({age : {$lt : 90}}).count()
+db.users.find({age : {$lt : 90}})
+
+#less Than Equal----------
+db.users.find({age : {$lte : 90}}).count()
+db.users.find({age : {$lte : 90}})
+
+
+db.users.find({age : {$lt : 90}} , {first_name : 1})
+db.users.find({age : {$lt : 90}} , {first_name : 1 , _id: 0 })
+db.users.find({age : {$lt : 90}} , {first_name : 1 , last_name: 1 })
+
+#AndGate----------
+db.users.find({$and: [{age: {$gt:90}} , {gender: "Male"} ]})
+
+#OrGate --------
+db.users.find({$or: [{age: {$lt:90}} , {gender: "Female"} ]})
+
+
+#NotGate --------
+db.users.find( {email: {$not: {$eq : "ass@gamil.com"}} } )
+db.users.find( {email: {$not: {$eq : "ass@gamil.com"}} } ).count()
+db.users.find( {age: {$not: {$lt : 95}} } )
+
+#NorGate-----
+
+db.users.find({$nor: [{age: { $lt:90 }} , {gender: "Female"} ]})
+db.users.find({$nor: [{age: { $lt:90 }} , {gender: "Female"} ]}).count()
+
+#IN Gate-----
+db.users.find( {age: {$in:[2,5,10]} } )
+
+# Sort--------Asscending
+db.users.find( {age: {$in:[2,5,10,20]} }).sort( {first_name:1} )
+
+
+# Sort--------desscending
+db.users.find( {age: {$in:[2,5,10,20]} }).sort( {first_name:-1} )
+db.users.find( {age: {$in:[2,5,10,20]} }).sort( {age:-1 , first_name:-1} )
+
+db.users.find( {gender: "Male"} ).sort( {age:-1} )
+
+#Like--------
+db.users.find( {first_name: /Sha/} )
+
+#Limit--------
+db.users.find( {first_name: /Sha/} ).limit(5)
+db.users.find( {age: {$in:[2,5,10,20]} }).sort( {age:-1 , first_name:-1} ).limit(1)
+
+
+#Skip-------
+db.users.find( {age: {$in:[2,5,10,20]} }).sort( {age:-1 , first_name:-1} ).skip(0).limit(1)
+db.users.find( {age: {$in:[2,5,10,20]} }).sort( {age:-1 , first_name:-1} ).skip(1).limit(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
